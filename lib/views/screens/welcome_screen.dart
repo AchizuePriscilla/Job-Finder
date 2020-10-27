@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:http/http.dart';
-import 'package:sca_ui/viewmodels/homescreen_viewmodel.dart';
+import 'package:sca_ui/viewmodels/welcomescreen_viewmodel.dart';
+import 'package:sca_ui/widgets/customImageContainer.dart';
+import 'package:sca_ui/views/screens/description_screen.dart';
 
-class HomeScren extends StatefulWidget {
+class WelcomeScreen extends StatefulWidget {
   @override
-  _HomeScrenState createState() => _HomeScrenState();
+  _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _HomeScrenState extends State<HomeScren> {
+class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<HomeScreenViewModel>.reactive(
+    return ViewModelBuilder<WelcomeScreenViewModel>.reactive(
         onModelReady: (model) => model.loadPhoto(),
         builder: (context, model, child) => Scaffold(
               body: SafeArea(
@@ -23,24 +25,11 @@ class _HomeScrenState extends State<HomeScren> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Container(
-                          width: 180,
+                        CustomImageContainer(
                           height: 180,
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 5,
-                                blurRadius: 7,
-                              ),
-                            ],
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.circular(30),
-                            image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: NetworkImage(model.imageLink),
-                            ),
-                          ),
+                          width: 180,
+                          url:
+                              "https://turkishlaborlaw.com/wp-content/uploads/2016/10/private-employment-agency-regulation-in-turkey.jpg",
                         ),
                         SizedBox(
                           height: 40,
@@ -66,7 +55,12 @@ class _HomeScrenState extends State<HomeScren> {
                           height: 60,
                         ),
                         MaterialButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return DescriptionScreen();
+                            }));
+                          },
                           height: 75,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
@@ -84,7 +78,7 @@ class _HomeScrenState extends State<HomeScren> {
                 ),
               ),
             ),
-        viewModelBuilder: () => HomeScreenViewModel());
+        viewModelBuilder: () => WelcomeScreenViewModel());
   }
 }
 

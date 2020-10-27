@@ -1,6 +1,6 @@
 import 'package:stacked/stacked.dart';
 
-class HomeScreenViewModel extends BaseViewModel {
+class WelcomeScreenViewModel extends BaseViewModel {
   String _imageLink;
   String get imageLink => _imageLink;
 
