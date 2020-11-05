@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sca_ui/widgets/customImageContainer.dart';
 import 'package:sca_ui/widgets/customTile.dart';
 import 'package:sca_ui/widgets/customCard.dart';
+import 'package:sca_ui/config.dart';
 
 class DescriptionScreen extends StatefulWidget {
   @override
@@ -11,6 +12,7 @@ class DescriptionScreen extends StatefulWidget {
 class _DescriptionScreenState extends State<DescriptionScreen> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return MaterialApp(
       home: SafeArea(
         child: Scaffold(
@@ -18,7 +20,7 @@ class _DescriptionScreenState extends State<DescriptionScreen> {
             elevation: 0,
             leading: Icon(
               Icons.menu_rounded,
-              size: 45,
+              size: SizeConfig.safeBlockVertical * 9.3,
               color: Colors.grey,
             ),
             backgroundColor: Colors.white,
@@ -27,8 +29,8 @@ class _DescriptionScreenState extends State<DescriptionScreen> {
                 padding: const EdgeInsets.only(
                     left: 8, right: 10, top: 8, bottom: 8),
                 child: CustomImageContainer(
-                    height: 5,
-                    width: 45,
+                    height: SizeConfig.safeBlockVertical * 9.5,
+                    width: SizeConfig.safeBlockHorizontal * 12.5,
                     url:
                         "https://avatars0.githubusercontent.com/u/54294245?s=400&u=9ac420a96bc73e4acc57de024388f6f2162b449a&v=4"),
               )
@@ -42,7 +44,9 @@ class _DescriptionScreenState extends State<DescriptionScreen> {
               children: [
                 Text(
                   'Discover \nThe Perfect Job',
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: SizeConfig.safeBlockHorizontal * 9.5,
+                      fontWeight: FontWeight.bold),
                 ),
                 Spacer(),
                 TextField(
@@ -54,7 +58,8 @@ class _DescriptionScreenState extends State<DescriptionScreen> {
                       size: 30,
                     ),
                     hintText: 'Search job or position...',
-                    hintStyle: TextStyle(fontSize: 15),
+                    hintStyle: TextStyle(
+                        fontSize: SizeConfig.safeBlockHorizontal * 4.75),
                     border: OutlineInputBorder(
                       borderSide: BorderSide(
                         width: 0.8,
@@ -66,7 +71,7 @@ class _DescriptionScreenState extends State<DescriptionScreen> {
                 ),
                 Spacer(),
                 Container(
-                  height: 150,
+                  height: SizeConfig.safeBlockVertical * 25,
                   child: ListView.builder(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
@@ -78,10 +83,10 @@ class _DescriptionScreenState extends State<DescriptionScreen> {
                 ),
                 Spacer(),
                 Text(
-                  'Jobs You\'ve applied for',
+                  'Jobs You\'ve applied for:',
                   style: TextStyle(
                       color: Colors.black,
-                      fontSize: 20,
+                      fontSize: SizeConfig.safeBlockHorizontal * 6.5,
                       fontWeight: FontWeight.bold),
                 ),
                 Spacer(),

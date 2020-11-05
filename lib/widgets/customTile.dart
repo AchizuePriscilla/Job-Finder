@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:sca_ui/config.dart';
 
 class CustomTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Container(
-      width: 200,
+      width: SizeConfig.safeBlockHorizontal * 65,
       margin: EdgeInsets.symmetric(horizontal: 8),
       child: Stack(
         children: [
@@ -14,7 +16,7 @@ class CustomTile extends StatelessWidget {
               image: NetworkImage(
                   "https://i.pinimg.com/564x/86/c2/6f/86c26fee4b8b0b72680841db06325006.jpg"),
               fit: BoxFit.fill,
-              width: 200,
+              width: SizeConfig.safeBlockHorizontal * 65,
             ),
           ),
           Container(
@@ -22,7 +24,7 @@ class CustomTile extends StatelessWidget {
               children: [
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                  width: 200,
+                  width: SizeConfig.safeBlockHorizontal * 65,
                   child: Row(
                     children: [
                       CircleAvatar(
@@ -52,25 +54,33 @@ class CustomTile extends StatelessWidget {
                     children: [
                       Text(
                         'Tokopedia',
-                        style: TextStyle(color: Colors.white, fontSize: 15),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: SizeConfig.safeBlockHorizontal * 4.8),
                       ),
                       Text(
                         'Sr Product Designer',
-                        style: TextStyle(color: Colors.white, fontSize: 15),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: SizeConfig.safeBlockHorizontal * 4.8),
                       ),
                       Container(
                         child: Row(
                           children: [
                             Text(
                               '\$5k/mo',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize:
+                                      SizeConfig.safeBlockHorizontal * 4.8),
                             ),
                             Spacer(),
                             Text(
                               'Jakarta, Indonesia',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize:
+                                      SizeConfig.safeBlockHorizontal * 4.8),
                             )
                           ],
                         ),
