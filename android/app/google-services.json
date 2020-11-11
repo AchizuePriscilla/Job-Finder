@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "369798792857",
+    "firebase_url": "https://jobfinder-49292.firebaseio.com",
+    "project_id": "jobfinder-49292",
+    "storage_bucket": "jobfinder-49292.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369798792857:android:25c53508a97c2166451a08",
+        "android_client_info": {
+          "package_name": "com.priscilla.job_finder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "369798792857-1jbfivpn2vqkll9f273al65fp72ok3ae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcRsWNv3Ru04vpKawajyO8QzXTld2Y2nc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "369798792857-1jbfivpn2vqkll9f273al65fp72ok3ae.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
