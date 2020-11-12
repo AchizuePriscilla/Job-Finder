@@ -4,8 +4,19 @@ import 'package:sca_ui/config.dart';
 import 'package:sca_ui/viewmodels/loginscreen_viewmodel.dart';
 import 'package:sca_ui/widgets/customButton.dart';
 import 'package:sca_ui/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sca_ui/views/screens/description_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  String email;
+  String password;
+  final _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<LoginScreenViewModel>.reactive(
@@ -34,14 +45,18 @@ class LoginScreen extends StatelessWidget {
                         height: SizeConfig.safeBlockVertical * 5,
                       ),
                       TextField(
-                          onChanged: (value) {},
+                          onChanged: (value) {
+                            email = value;
+                          },
                           decoration: ktextFieldDecoration.copyWith(
                               hintText: 'Enter your Email')),
                       SizedBox(
                         height: SizeConfig.safeBlockVertical * 1,
                       ),
                       TextField(
-                          onChanged: (value) {},
+                          onChanged: (value) {
+                            password = value;
+                          },
                           decoration: ktextFieldDecoration.copyWith(
                               hintText: 'Enter your Password')),
                       SizedBox(
@@ -50,7 +65,21 @@ class LoginScreen extends StatelessWidget {
                       CustomButton(
                         height: SizeConfig.safeBlockVertical * 12,
                         text: 'Login',
-                        onPressed: () {},
+                        onPressed: () async {
+                          try {
+                            final loggedInUser =
+                                await _auth.signInWithEmailAndPassword(
+                                    email: email, password: password);
+                            if (loggedInUser != null) {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return DescriptionScreen();
+                              }));
+                            }
+                          } catch (e) {
+                            print(e);
+                          }
+                        },
                         buttonColor: Colors.deepPurple[300],
                         textColor: Colors.white,
                       )

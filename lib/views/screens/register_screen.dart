@@ -6,6 +6,7 @@ import 'package:sca_ui/widgets/customButton.dart';
 import 'package:sca_ui/constants.dart';
 import 'package:sca_ui/views/screens/login_screen.dart';
 import 'dart:developer';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -13,6 +14,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  final _auth = FirebaseAuth.instance;
   String email;
   String password;
   @override
@@ -68,14 +70,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         CustomButton(
                           height: SizeConfig.safeBlockVertical * 12,
                           text: 'Register',
-                          onPressed: () {
-                            log(email);
-                            log(password);
+                          onPressed: () async {
+                            try {
+                              final newUser =
+                                  await _auth.createUserWithEmailAndPassword(
+                                      email: email, password: password);
 
-                            // Navigator.push(context,
-                            //     MaterialPageRoute(builder: (context) {
-                            //   return LoginScreen();
-                            // }));
+                              if (newUser != null) {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return LoginScreen();
+                                }));
+                              }
+                            } catch (e) {
+                              print(e);
+                            }
                           },
                           buttonColor: Colors.deepPurple[300],
                           textColor: Colors.white,
