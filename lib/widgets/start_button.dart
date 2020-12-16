@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:sca_ui/views/screens/start_screen.dart';
+import 'package:sca_ui/routes/route_names.dart';
 
 class StartButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) {
-              return StartScreen();
-            },
-          ),
-        );
+        Navigator.pushNamed(context, RouteNames.startScreen);
       },
       child: Container(
         decoration: BoxDecoration(

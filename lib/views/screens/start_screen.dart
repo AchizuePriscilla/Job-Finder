@@ -5,6 +5,7 @@ import 'package:sca_ui/viewmodels/startscreen_viewmodel.dart';
 import 'package:sca_ui/widgets/customButton.dart';
 import 'package:sca_ui/views/screens/login_screen.dart';
 import 'package:sca_ui/views/screens/register_screen.dart';
+import 'package:sca_ui/routes/route_names.dart';
 
 class StartScreen extends StatelessWidget {
   @override
@@ -39,10 +40,8 @@ class StartScreen extends StatelessWidget {
                               buttonColor: Color(0xff564569),
                               textColor: Colors.white,
                               onPressed: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return LoginScreen();
-                                }));
+                                Navigator.pushNamed(
+                                    context, RouteNames.loginScreen);
                               }),
                         ),
                       ),
@@ -69,10 +68,8 @@ class StartScreen extends StatelessWidget {
                               buttonColor: Color(0xff564569),
                               textColor: Colors.white,
                               onPressed: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return RegisterScreen();
-                                }));
+                                Navigator.pushNamed(
+                                    context, RouteNames.registerScreen);
                               }),
                         ),
                       ),

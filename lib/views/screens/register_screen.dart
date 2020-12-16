@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sca_ui/routes/route_names.dart';
 import 'package:stacked/stacked.dart';
 import 'package:sca_ui/config.dart';
 import 'package:sca_ui/viewmodels/registerscreen_viewmodel.dart';
@@ -110,10 +111,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               CircularProgressIndicator();
                             });
                             if (newUser != null) {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return LoginScreen();
-                              }));
+                              Navigator.pushNamed(
+                                  context, RouteNames.loginScreen);
                             }
                           } catch (e) {
                             print(e);

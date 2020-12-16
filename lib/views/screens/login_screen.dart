@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sca_ui/routes/route_names.dart';
 import 'package:stacked/stacked.dart';
 import 'package:sca_ui/config.dart';
 import 'package:sca_ui/viewmodels/loginscreen_viewmodel.dart';
@@ -71,10 +72,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 await _auth.signInWithEmailAndPassword(
                                     email: email, password: password);
                             if (loggedInUser != null) {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return DescriptionScreen();
-                              }));
+                              Navigator.pushNamed(
+                                  context, RouteNames.descriptionScreen);
                             }
                           } catch (e) {
                             print(e);

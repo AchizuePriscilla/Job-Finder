@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sca_ui/views/screens/welcome_screen.dart';
+import 'package:sca_ui/routes/route_generator.dart';
+import 'package:sca_ui/routes/route_names.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
@@ -13,7 +16,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WelcomeScreen(),
+      routes: RouteNames.routes,
+      initialRoute: RouteNames.welcomeScreen,
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
