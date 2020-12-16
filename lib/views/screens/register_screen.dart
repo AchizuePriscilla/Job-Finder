@@ -17,6 +17,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _auth = FirebaseAuth.instance;
   String email;
   String password;
+  var currentItem = 'Recruiter';
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<RegisterScreenViewModel>.reactive(
@@ -61,7 +62,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             password = value;
                           },
                           decoration: ktextFieldDecoration.copyWith(
-                              hintText: 'Enter your Password')),
+                            hintText: 'Enter your Password',
+                          )),
+                      SizedBox(
+                        height: SizeConfig.safeBlockVertical * 1,
+                      ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(32)),
+                        child: Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 47, vertical: 0),
+                          decoration: BoxDecoration(color: Colors.white),
+                          child: DropdownButton<String>(
+                            items: model.userTypeList
+                                .map(
+                                  (String dropDownItem) =>
+                                      DropdownMenuItem<String>(
+                                    value: dropDownItem,
+                                    child: Text(dropDownItem),
+                                  ),
+                                )
+                                .toList(),
+                            onChanged: (String valueSelected) {
+                              setState(() {
+                                currentItem = valueSelected;
+                              });
+                            },
+                            hint: Text(
+                              'Recruiter or Job Seeker?',
+                              style: TextStyle(fontSize: 15.4),
+                            ),
+                          ),
+                        ),
+                      ),
                       SizedBox(
                         height: SizeConfig.safeBlockVertical * 2.5,
                       ),

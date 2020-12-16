@@ -29,10 +29,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       decoration: BoxDecoration(
                         color: Color(0xffd5d3d3),
                         image: DecorationImage(
-                          image: NetworkImage(
-                            "https://turkishlaborlaw.com/wp-content/uploads/2016/10/private-employment-agency-regulation-in-turkey.jpg",
-                          ),
-                        ),
+                            image: NetworkImage(
+                              "https://turkishlaborlaw.com/wp-content/uploads/2016/10/private-employment-agency-regulation-in-turkey.jpg",
+                            ),
+                            fit: BoxFit.cover),
                         borderRadius: BorderRadius.circular(25),
                       ),
                     ),
@@ -56,15 +56,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                               textAlign: TextAlign.center,
                             ),
                             Expanded(
-                              child: Center(
-                                child: Text(
-                                  "Just some random text. Mind\'s foggy, can\'t come up with something meaningful",
-                                  style: TextStyle(
-                                      fontSize: 22,
-                                      fontFamily: "opensans",
-                                      color: Colors.grey),
-                                  textAlign: TextAlign.center,
-                                ),
+                              child: Text(
+                                "Just some random text. Mind\'s foggy, can\'t come up with something meaningful",
+                                style: TextStyle(
+                                    fontSize: 22,
+                                    fontFamily: "opensans",
+                                    color: Colors.grey),
+                                textAlign: TextAlign.center,
                               ),
                             ),
                           ],
