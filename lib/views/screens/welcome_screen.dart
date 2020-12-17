@@ -12,7 +12,6 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return ViewModelBuilder<WelcomeScreenViewModel>.reactive(
       onModelReady: (model) => model.loadPhoto(),
       builder: (context, model, child) => Scaffold(

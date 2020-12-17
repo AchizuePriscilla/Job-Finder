@@ -4,9 +4,8 @@ import 'package:sca_ui/config.dart';
 class CustomTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Container(
-      width: SizeConfig.safeBlockHorizontal * 65,
+      width: SizeConfig.widthMultiplier * 65,
       margin: EdgeInsets.symmetric(horizontal: 8),
       child: Stack(
         children: [
@@ -16,7 +15,7 @@ class CustomTile extends StatelessWidget {
               image: NetworkImage(
                   "https://i.pinimg.com/564x/86/c2/6f/86c26fee4b8b0b72680841db06325006.jpg"),
               fit: BoxFit.fill,
-              width: SizeConfig.safeBlockHorizontal * 65,
+              width: SizeConfig.widthMultiplier * 65,
             ),
           ),
           Container(
@@ -24,7 +23,7 @@ class CustomTile extends StatelessWidget {
               children: [
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                  width: SizeConfig.safeBlockHorizontal * 65,
+                  width: SizeConfig.widthMultiplier * 65,
                   child: Row(
                     children: [
                       CircleAvatar(
@@ -56,13 +55,13 @@ class CustomTile extends StatelessWidget {
                         'Tokopedia',
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: SizeConfig.safeBlockHorizontal * 4.8),
+                            fontSize: SizeConfig.widthMultiplier * 4.8),
                       ),
                       Text(
                         'Sr Product Designer',
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: SizeConfig.safeBlockHorizontal * 4.8),
+                            fontSize: SizeConfig.widthMultiplier * 4.8),
                       ),
                       Container(
                         child: Row(
@@ -72,7 +71,7 @@ class CustomTile extends StatelessWidget {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize:
-                                      SizeConfig.safeBlockHorizontal * 4.8),
+                                      SizeConfig.widthMultiplier * 4.8),
                             ),
                             Spacer(),
                             Text(
@@ -80,7 +79,7 @@ class CustomTile extends StatelessWidget {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize:
-                                      SizeConfig.safeBlockHorizontal * 4.8),
+                                      SizeConfig.widthMultiplier * 4.8),
                             )
                           ],
                         ),
