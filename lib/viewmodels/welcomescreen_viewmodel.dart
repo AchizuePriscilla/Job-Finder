@@ -1,6 +1,8 @@
-import 'package:stacked/stacked.dart';
+import 'package:flutter/material.dart';
 
-class WelcomeScreenViewModel extends BaseViewModel {
+import 'base_model.dart';
+
+class WelcomeScreenViewModel extends BaseModel {
   String _imageLink;
   String get imageLink => _imageLink;
 
@@ -12,5 +14,9 @@ class WelcomeScreenViewModel extends BaseViewModel {
       notifyListeners();
       setBusy(false);
     } catch (e) {}
+  }
+
+  void checkIfUserIsLoggedIn(BuildContext context) {
+    loadPhoto();
   }
 }

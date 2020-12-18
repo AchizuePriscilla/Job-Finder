@@ -2,96 +2,124 @@ import 'package:flutter/material.dart';
 import 'package:sca_ui/config.dart';
 
 class CustomTile extends StatelessWidget {
+  final bool isBlack;
+  final String title, desc, pay, location;
+
+  const CustomTile({
+    Key key,
+    this.isBlack = true,
+    this.pay,
+    this.title,
+    this.desc,
+    this.location,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: SizeConfig.widthMultiplier * 65,
-      margin: EdgeInsets.symmetric(horizontal: 8),
-      child: Stack(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Image(
-              image: NetworkImage(
-                  "https://i.pinimg.com/564x/86/c2/6f/86c26fee4b8b0b72680841db06325006.jpg"),
-              fit: BoxFit.fill,
-              width: SizeConfig.widthMultiplier * 65,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: Container(
+          width: 320,
+          margin: EdgeInsets.symmetric(horizontal: 8),
+          child: Container(
+            decoration: BoxDecoration(
+              color: isBlack ? Colors.black : Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  offset: const Offset(0, 3),
+                  spreadRadius: 2,
+                  color: Colors.grey.withOpacity(0.5),
+                  blurRadius: 7,
+                ),
+              ],
             ),
-          ),
-          Container(
-            child: Column(
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                  width: SizeConfig.widthMultiplier * 65,
-                  child: Row(
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CircleAvatar(
-                        backgroundImage: NetworkImage(
-                            "https://www.clipartmax.com/png/middle/131-1319720_cute-avatars-artist.png"),
+                        backgroundColor: Colors.white,
+                        child: Icon(
+                          Icons.all_inclusive,
+                          size: SizeConfig.imageSizeMultiplier * 8.0,
+                          color: Colors.deepOrangeAccent[400],
+                        ),
                       ),
                       Spacer(),
                       RaisedButton(
                         onPressed: null,
-                        disabledColor: Colors.white,
+                        disabledColor: Colors.black87,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
                         child: Text(
                           "Full-time",
-                          style: TextStyle(color: Colors.black),
+                          style: TextStyle(
+                              color: Colors.white, fontFamily: 'opensans'),
                         ),
                       ),
                     ],
                   ),
-                ),
-                Container(
-                    child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Tokopedia',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: SizeConfig.widthMultiplier * 4.8),
-                      ),
-                      Text(
-                        'Sr Product Designer',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: SizeConfig.widthMultiplier * 4.8),
-                      ),
-                      Container(
-                        child: Row(
-                          children: [
-                            Text(
-                              '\$5k/mo',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize:
-                                      SizeConfig.widthMultiplier * 4.8),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Text(
+                          'Tokopedia',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: SizeConfig.widthMultiplier * 4.8,
+                              fontFamily: 'opensans'),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Text(
+                          title ?? '',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: SizeConfig.widthMultiplier * 4.8,
+                              fontFamily: 'opensans'),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Text(
+                            pay ?? '',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: SizeConfig.widthMultiplier * 4.8,
+                                fontFamily: 'opensans'),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          Spacer(),
+                          Text(
+                            location ?? '',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: SizeConfig.widthMultiplier * 4.8,
+                              fontFamily: 'opensans',
                             ),
-                            Spacer(),
-                            Text(
-                              'Jakarta, Indonesia',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize:
-                                      SizeConfig.widthMultiplier * 4.8),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ))
-              ],
+                            overflow: TextOverflow.ellipsis,
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
-          )
-        ],
-      ),
+          )),
     );
   }
 }

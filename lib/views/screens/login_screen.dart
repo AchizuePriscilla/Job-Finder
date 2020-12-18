@@ -378,7 +378,7 @@ class _LoginScreenState extends State<LoginScreen>
                                   await m.login(
                                     context: context,
                                     email: _email.text.trim(),
-                                    password: _email.text.trim(),
+                                    password: _password.text.trim(),
                                   );
                                 }
                               },

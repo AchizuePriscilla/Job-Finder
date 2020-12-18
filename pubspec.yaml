@@ -18,6 +18,8 @@ dependencies:
   cloud_firestore: ^0.14.3
   fluttertoast: ^7.1.5
   get_it: ^5.0.3
+  flutter_email_sender: ^4.0.0
+  uuid: ^2.2.2
 
 dev_dependencies:
   flutter_test:
@@ -36,6 +38,40 @@ flutter:
 
   assets:
     - assets/images/
+  fonts:
+    - family: opensans
+      fonts:
+        - asset: assets/fonts/Open_Sans/OpenSans-Bold.ttf
+        - asset: assets/fonts/Open_Sans/OpenSans-BoldItalic.ttf
+        - asset: assets/fonts/Open_Sans/OpenSans-ExtraBold.ttf
+        - asset: assets/fonts/Open_Sans/OpenSans-ExtraBoldItalic.ttf
+        - asset: assets/fonts/Open_Sans/OpenSans-Italic.ttf
+        - asset: assets/fonts/Open_Sans/OpenSans-Light.ttf
+        - asset: assets/fonts/Open_Sans/OpenSans-LightItalic.ttf
+        - asset: assets/fonts/Open_Sans/OpenSans-Regular.ttf
+        - asset: assets/fonts/Open_Sans/OpenSans-SemiBold.ttf
+        - asset: assets/fonts/Open_Sans/OpenSans-SemiBoldItalic.ttf
+    - family: worksans
+      fonts:
+        - asset: assets/fonts/worksans/WorkSans-Black.ttf
+        - asset: assets/fonts/worksans/WorkSans-BlackItalic.ttf
+        - asset: assets/fonts/worksans/WorkSans-Bold.ttf
+        - asset: assets/fonts/worksans/WorkSans-BoldItalic.ttf
+        - asset: assets/fonts/worksans/WorkSans-ExtraBold.ttf
+        - asset: assets/fonts/worksans/WorkSans-ExtraBoldItalic.ttf
+        - asset: assets/fonts/worksans/WorkSans-ExtraLight.ttf
+        - asset: assets/fonts/worksans/WorkSans-ExtraLightItalic.ttf
+        - asset: assets/fonts/worksans/WorkSans-Italic.ttf
+        - asset: assets/fonts/worksans/WorkSans-Light.ttf
+        - asset: assets/fonts/worksans/WorkSans-LightItalic.ttf
+        - asset: assets/fonts/worksans/WorkSans-Medium.ttf
+        - asset: assets/fonts/worksans/WorkSans-MediumItalic.ttf
+        - asset: assets/fonts/worksans/WorkSans-Regular.ttf
+        - asset: assets/fonts/worksans/WorkSans-SemiBold.ttf
+        - asset: assets/fonts/worksans/WorkSans-SemiBoldItalic.ttf
+        - asset: assets/fonts/worksans/WorkSans-Thin.ttf
+        - asset: assets/fonts/worksans/WorkSans-ThinItalic.ttf
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

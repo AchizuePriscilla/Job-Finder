@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sca_ui/routes/route_names.dart';
 
@@ -6,7 +7,11 @@ class StartButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, RouteNames.startScreen);
+        if (FirebaseAuth.instance.currentUser != null) {
+          Navigator.pushNamed(context, RouteNames.descriptionScreen);
+        } else {
+          Navigator.pushNamed(context, RouteNames.startScreen);
+        }
       },
       child: Container(
         decoration: BoxDecoration(

@@ -5,6 +5,7 @@ class Users {
     this.email,
     this.phonenumber,
     this.userid,
+    this.password,
   });
 
   Users.fromData(Map<String, dynamic> data)
@@ -24,5 +25,5 @@ class Users {
     };
   }
 
-  String firstname, lastname, email, phonenumber, userid;
+  String firstname, lastname, email, phonenumber, userid, password;
 }

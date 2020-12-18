@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -16,9 +14,8 @@ class AuthenticationService {
 
   Users get currentUser => _currentUser;
 
-  Future loginWithEmail(
-    @required String email,
-    @required String password,
+  Future loginWithEmail(String email,
+      String password,
   ) async {
     try {
       var user = await _firebaseAuth.signInWithEmailAndPassword(
@@ -26,39 +23,40 @@ class AuthenticationService {
       await populateCurrentUser(user.user);
       return user != null;
     } catch (e) {
-      return e.code;
+      return e.message;
     }
   }
 
-  Future signupWithEmail(
-      {@required String email,
-      @required String password,
-      @required String firstname,
-      @required String lastname,
-      @required String phonenumber,
-      }) async {
+  Future signupWithEmail({@required Users users}) async {
     try {
       var authResult = await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
+        email: users.email,
+        password: users.password,
+      );
 
-      //create a new user profile on firestore
       _currentUser = Users(
-          userid: authResult.user.uid,
-          email: email,
-          firstname: firstname,
-          lastname: lastname,
-          phonenumber: phonenumber);
+        phonenumber: users.phonenumber,
+        userid: authResult.user.uid,
+        lastname: users.lastname,
+        firstname: users.firstname,
+        email: users.email,
+      );
+      //create a new user profile on firestore
       print(authResult.user);
-      if(authResult.user != null) {
+      if (authResult.user != null) {
         await _firestoreService.create(currentUser);
-      }else{
-        Fluttertoast.showToast(msg: "A database error occured while creating your account, reach out to us via email: priscillaachizue@gmail.com", toastLength: Toast.LENGTH_LONG, backgroundColor: Colors.deepOrangeAccent[400]);
-//        print("A database error occured while creating your account, reach out to us on here email: zadencapital@gmail.com")
+      } else {
+        Fluttertoast.showToast(
+          msg:
+          "A database error occured while creating your account, reach out to us via email: priscillaachizue@gmail.com",
+          toastLength: Toast.LENGTH_LONG,
+          backgroundColor: Colors.deepOrangeAccent[400],
+        );
       }
 
       return authResult.user != null;
     } catch (e) {
-      return e.code;
+      return e.message;
     }
   }
 
@@ -73,7 +71,8 @@ class AuthenticationService {
       _currentUser = await _firestoreService.getUser(user.uid);
     }
   }
-  Future signout(context) async{
-   await FirebaseAuth.instance.signOut();
+
+  Future signout(context) async {
+    await FirebaseAuth.instance.signOut();
   }
 }

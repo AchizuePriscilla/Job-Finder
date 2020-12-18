@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sca_ui/viewmodels/welcomescreen_viewmodel.dart';
 import 'package:sca_ui/widgets/start_button.dart';
 import 'package:stacked/stacked.dart';
-import 'package:sca_ui/config.dart';
-import 'package:sca_ui/viewmodels/welcomescreen_viewmodel.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -13,7 +12,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<WelcomeScreenViewModel>.reactive(
-      onModelReady: (model) => model.loadPhoto(),
+      onModelReady: (model) => model.checkIfUserIsLoggedIn(context),
       builder: (context, model, child) => Scaffold(
         body: SafeArea(
           child: Column(

@@ -1,37 +1,28 @@
+
 import 'package:flutter/material.dart';
-import 'package:sca_ui/routes/route_names.dart';
-import 'package:stacked/stacked.dart';
-import 'package:sca_ui/config.dart';
+import 'package:sca_ui/models/user.dart';
 import 'package:sca_ui/viewmodels/registerscreen_viewmodel.dart';
-import 'package:sca_ui/widgets/customButton.dart';
-import 'package:sca_ui/constants.dart';
-import 'package:sca_ui/views/screens/login_screen.dart';
-import 'dart:developer';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:stacked/stacked.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> with SingleTickerProviderStateMixin{
+class _RegisterScreenState extends State<RegisterScreen>
+    with SingleTickerProviderStateMixin {
   final _formKey = GlobalKey<FormState>();
   final _key = GlobalKey<ScaffoldState>();
 
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
-  TextEditingController _name = TextEditingController();
   TextEditingController _phonenumber = TextEditingController();
-  TextEditingController _businessname = TextEditingController();
   TextEditingController _firstname = TextEditingController();
+  TextEditingController _lastname = TextEditingController();
   bool hidePass = true;
   bool loading = false;
 
-
   String error = "";
-  String _currentStates;
-  String _currentCategory;
-
 
   Animation animation, delayedAnimation, muchDelayedAnimation;
   AnimationController animationController;
@@ -81,7 +72,10 @@ class _RegisterScreenState extends State<RegisterScreen> with SingleTickerProvid
                 padding: const EdgeInsets.only(top: 50.0, left: 20),
                 child: Row(
                   children: <Widget>[
-                     Icon(Icons.arrow_back, color: Colors.black, ),
+                    Icon(
+                      Icons.arrow_back,
+                      color: Colors.black,
+                    ),
                     InkWell(
                       onTap: () {
 //                        widget.toggleView();
@@ -166,230 +160,260 @@ class _RegisterScreenState extends State<RegisterScreen> with SingleTickerProvid
                     ),
                     Expanded(
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-
-                        Transform(
-                          transform: Matrix4.translationValues(
-                              animation.value * width, 0.0, 0.0),
-                          child: Padding(
-                                  padding: const EdgeInsets.only(left: 20.0),
-                                  child: Text("Hello\nDearest,",
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.bold)),
-                                ),
-
-                        ),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        Transform(
-                          transform: Matrix4.translationValues(
-                              muchDelayedAnimation.value * width, 0.0, 0.0),
-                          child: Padding(
-                            padding:
-                            const EdgeInsets.only(left: 20.0, right: 50, top: 10),
-                            child: Text(
-                              "We want you to provide a little information about you and your business below, to use this ",
-                              style: TextStyle(
-                                  color: Colors.black.withOpacity(0.7), fontSize: 15),
+                            Transform(
+                              transform: Matrix4.translationValues(
+                                  animation.value * width, 0.0, 0.0),
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 20.0),
+                                child: Text("Hello\nDearest,",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold)),
+                              ),
                             ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20.0, right: 20),
-                          child: Transform(
-                            transform: Matrix4.translationValues(
-                                delayedAnimation.value * width, 0.0, 0.0),
-                            child: Form(
-                              key: _formKey,
-                              child: Column(
-                                children: <Widget>[
-                                  Row(
+                            SizedBox(
+                              height: 30,
+                            ),
+                            Transform(
+                              transform: Matrix4.translationValues(
+                                  muchDelayedAnimation.value * width, 0.0, 0.0),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 20.0, right: 50, top: 10),
+                                child: Text(
+                                  "We want you to provide a little information about you and your business below, to use this ",
+                                  style: TextStyle(
+                                      color: Colors.black.withOpacity(0.7),
+                                      fontSize: 15),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                              const EdgeInsets.only(left: 20.0, right: 20),
+                              child: Transform(
+                                transform: Matrix4.translationValues(
+                                    delayedAnimation.value * width, 0.0, 0.0),
+                                child: Form(
+                                  key: _formKey,
+                                  child: Column(
                                     children: <Widget>[
-                                      Expanded(
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(right: 4.0),
-                                          child: Theme(
-                                            data: Theme.of(context)
-                                                .copyWith(primaryColor: Colors.black),
-                                            child: TextFormField(
-                                              controller: _name,
-                                              validator: (value) {
-                                                if (value.isEmpty) {
-                                                  return "The name field cannot be empty";
-                                                }
-                                                return null;
-                                              },
-                                              style: TextStyle(color: Colors.black),
-                                              decoration: InputDecoration(
-                                                enabledBorder: UnderlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                        color: Colors.black)),
-                                                labelText: 'LAST NAME',
-                                                labelStyle: TextStyle(
-                                                    fontSize: 15,
-                                                    color: Colors.black),
+                                      Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 4.0),
+                                              child: Theme(
+                                                data: Theme.of(context)
+                                                    .copyWith(
+                                                    primaryColor:
+                                                    Colors.black),
+                                                child: TextFormField(
+                                                  controller: _lastname,
+                                                  validator: (value) {
+                                                    if (value.isEmpty) {
+                                                      return "The name field cannot be empty";
+                                                    }
+                                                    return null;
+                                                  },
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                  decoration: InputDecoration(
+                                                    enabledBorder:
+                                                    UnderlineInputBorder(
+                                                        borderSide:
+                                                        BorderSide(
+                                                            color: Colors
+                                                                .black)),
+                                                    labelText: 'LAST NAME',
+                                                    labelStyle: TextStyle(
+                                                      fontSize: 15,
+                                                      color: Colors.black,
+                                                    ),
+                                                  ),
+                                                ),
                                               ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 4.0),
+                                              child: Theme(
+                                                data: Theme.of(context)
+                                                    .copyWith(
+                                                    primaryColor:
+                                                    Colors.black),
+                                                child: TextFormField(
+                                                  controller: _firstname,
+                                                  validator: (value) {
+                                                    if (value.isEmpty) {
+                                                      return "The name field cannot be empty";
+                                                    }
+                                                    return null;
+                                                  },
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                  decoration: InputDecoration(
+                                                    enabledBorder:
+                                                    UnderlineInputBorder(
+                                                        borderSide:
+                                                        BorderSide(
+                                                            color: Colors
+                                                                .black)),
+                                                    labelText: 'FIRST NAME',
+                                                    labelStyle: TextStyle(
+                                                        fontSize: 15,
+                                                        color: Colors.black),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding:
+                                        EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                        child: Theme(
+                                          data: Theme.of(context).copyWith(
+                                              primaryColor: Colors.black),
+                                          child: TextFormField(
+                                            controller: _email,
+                                            validator: (value) {
+                                              if (value.isEmpty) {
+                                                Pattern pattern =
+                                                    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                                                RegExp regex =
+                                                new RegExp(pattern);
+                                                if (!regex.hasMatch(value))
+                                                  return 'Please make sure your email address is valid';
+                                                else
+                                                  return null;
+                                              }
+                                            },
+                                            style:
+                                            TextStyle(color: Colors.black),
+                                            decoration: InputDecoration(
+                                              enabledBorder:
+                                              UnderlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: Colors.black)),
+                                              labelText: 'EMAIL',
+                                              labelStyle: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Colors.black),
                                             ),
                                           ),
                                         ),
                                       ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(left: 4.0),
-                                          child: Theme(
-                                            data: Theme.of(context)
-                                                .copyWith(primaryColor: Colors.black),
-                                            child: TextFormField(
-                                              controller: _firstname,
-                                              validator: (value) {
-                                                if (value.isEmpty) {
-                                                  return "The name field cannot be empty";
-                                                }
-                                                return null;
-                                              },
-                                              style: TextStyle(color: Colors.black),
-                                              decoration: InputDecoration(
-                                                enabledBorder: UnderlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                        color: Colors.black)),
-                                                labelText: 'FIRST NAME',
-                                                labelStyle: TextStyle(
-                                                    fontSize: 15,
-                                                    color: Colors.black),
-                                              ),
+                                      Padding(
+                                        padding:
+                                        EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                        child: Theme(
+                                          data: Theme.of(context).copyWith(
+                                              primaryColor: Colors.black),
+                                          child: TextFormField(
+                                            controller: _phonenumber,
+                                            validator: (value) {
+                                              if (value.isEmpty) {
+                                                return "The name field cannot be empty";
+                                              }
+                                              return null;
+                                            },
+                                            style:
+                                            TextStyle(color: Colors.black),
+                                            decoration: InputDecoration(
+                                              enabledBorder:
+                                              UnderlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: Colors.black)),
+                                              labelText: 'PHONE NUMBER',
+                                              labelStyle: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Colors.black),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                        EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                        child: Theme(
+                                          data: Theme.of(context).copyWith(
+                                              primaryColor: Colors.black),
+                                          child: TextFormField(
+                                            controller: _password,
+                                            obscureText: true,
+                                            validator: (value) {
+                                              if (value.isEmpty) {
+                                                return "The password field cannot be empty";
+                                              } else if (value.length < 6) {
+                                                return "the password has to be at least 6 characters long";
+                                              }
+                                              return null;
+                                            },
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                            ),
+                                            decoration: InputDecoration(
+                                              border: InputBorder.none,
+                                              enabledBorder:
+                                              UnderlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: Colors.black)),
+                                              labelText: 'PASSWORD',
+                                              labelStyle: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Colors.black),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                        EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                        child: Theme(
+                                          data: Theme.of(context).copyWith(
+                                              primaryColor: Colors.black),
+                                          child: TextFormField(
+                                            obscureText: true,
+                                            validator: (value) {
+                                              if (value.isEmpty) {
+                                                return "The password field cannot be empty";
+                                              } else if (value.length < 6) {
+                                                return "the password has to be at least 6 characters long";
+                                              }
+                                              return null;
+                                            },
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                            ),
+                                            decoration: InputDecoration(
+                                              enabledBorder:
+                                              UnderlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: Colors.black)),
+                                              labelText: 'CONFIRM PASSWORD',
+                                              labelStyle: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Colors.black),
                                             ),
                                           ),
                                         ),
                                       ),
                                     ],
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                    child: Theme(
-                                      data: Theme.of(context)
-                                          .copyWith(primaryColor: Colors.black),
-                                      child: TextFormField(
-                                        controller: _email,
-                                        validator: (value) {
-                                          if (value.isEmpty) {
-                                            Pattern pattern =
-                                                r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                                            RegExp regex = new RegExp(pattern);
-                                            if (!regex.hasMatch(value))
-                                              return 'Please make sure your email address is valid';
-                                            else
-                                              return null;
-                                          }
-                                        },
-                                        style: TextStyle(color: Colors.black),
-                                        decoration: InputDecoration(
-                                          enabledBorder: UnderlineInputBorder(
-                                              borderSide:
-                                              BorderSide(color: Colors.black)),
-                                          labelText: 'EMAIL',
-                                          labelStyle: TextStyle(
-                                              fontSize: 15, color: Colors.black),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                    child: Theme(
-                                      data: Theme.of(context)
-                                          .copyWith(primaryColor: Colors.black),
-                                      child: TextFormField(
-                                        controller: _phonenumber,
-                                        validator: (value) {
-                                          if (value.isEmpty) {
-                                            return "The name field cannot be empty";
-                                          }
-                                          return null;
-                                        },
-                                        style: TextStyle(color: Colors.black),
-                                        decoration: InputDecoration(
-                                          enabledBorder: UnderlineInputBorder(
-                                              borderSide:
-                                              BorderSide(color: Colors.black)),
-                                          labelText: 'PHONE NUMBER',
-                                          labelStyle: TextStyle(
-                                              fontSize: 15, color: Colors.black),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                    child: Theme(
-                                      data: Theme.of(context)
-                                          .copyWith(primaryColor: Colors.black),
-                                      child: TextFormField(
-                                        controller: _password,
-                                        obscureText: true,
-                                        validator: (value) {
-                                          if (value.isEmpty) {
-                                            return "The password field cannot be empty";
-                                          } else if (value.length < 6) {
-                                            return "the password has to be at least 6 characters long";
-                                          }
-                                          return null;
-                                        },
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                        ),
-                                        decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          enabledBorder: UnderlineInputBorder(
-                                              borderSide:
-                                              BorderSide(color: Colors.black)),
-                                          labelText: 'PASSWORD',
-                                          labelStyle: TextStyle(
-                                              fontSize: 15, color: Colors.black),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                    child: Theme(
-                                      data: Theme.of(context)
-                                          .copyWith(primaryColor: Colors.black),
-                                      child: TextFormField(
-                                        obscureText: true,
-                                        validator: (value) {
-                                          if (value.isEmpty) {
-                                            return "The password field cannot be empty";
-                                          } else if (value.length < 6) {
-                                            return "the password has to be at least 6 characters long";
-                                          }
-                                          return null;
-                                        },
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                        ),
-                                        decoration: InputDecoration(
-                                          enabledBorder: UnderlineInputBorder(
-                                              borderSide:
-                                              BorderSide(color: Colors.black)),
-                                          labelText: 'CONFIRM PASSWORD',
-                                          labelStyle: TextStyle(
-                                              fontSize: 15, color: Colors.black),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                                ),
                               ),
-                            ),
-                          ),
 //          ),
-                        ),
-                      ]),
+                            ),
+                          ]),
                     ),
                   ],
                 ),
@@ -439,28 +463,41 @@ class _RegisterScreenState extends State<RegisterScreen> with SingleTickerProvid
 
 //                    ),
 //              Text("boo", style: TextStyle(color: Colors.white),),
-                          Material(
-                            borderRadius: BorderRadius.circular(30.0),
-                            color: Colors.deepOrangeAccent[400],
-                            elevation: 0.0,
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: InkWell(
+                          ViewModelBuilder<RegisterScreenViewModel>.reactive(
+                            viewModelBuilder: () => RegisterScreenViewModel(),
+                            builder: (_, model, __) =>
+                                Material(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  color: Colors.deepOrangeAccent[400],
+                                  elevation: 0.0,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: InkWell(
                                   onTap: () async {
-                                    if (_formKey.currentState
-                                        .validate()) {
-                                      setState(() {
-                                        loading = true;
-                                      });
+                                    if (_formKey.currentState.validate()) {
+                                      await model.SignUpWithEmailAndPassword(
+                                        users: Users(
+                                          password: _password.text,
+                                          email: _email.text,
+                                          firstname: _firstname.text,
+                                          lastname: _lastname.text,
+                                          phonenumber: _phonenumber.text,
+                                        ),
+                                        context: context,
+                                      );
                                     }
                                   },
-                                  child: loading
-                                      ? CircularProgressIndicator(backgroundColor: Colors.white,)
+                                      child: model.busy
+                                          ? CircularProgressIndicator(
+                                        backgroundColor: Colors.white,
+                                      )
                                       : Icon(
-                                    Icons.arrow_forward,
-                                    size: 20,
-                                    color: Colors.white,
-                                  )),
+                                        Icons.arrow_forward,
+                                        size: 20,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
                             ),
                           )
                         ])),
@@ -471,7 +508,6 @@ class _RegisterScreenState extends State<RegisterScreen> with SingleTickerProvid
         });
   }
 }
-
 
 //  final _auth = FirebaseAuth.instance;
 //  String email;

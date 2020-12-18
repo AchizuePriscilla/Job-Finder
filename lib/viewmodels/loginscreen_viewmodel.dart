@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sca_ui/routes/route_names.dart';
 import 'package:sca_ui/viewmodels/base_model.dart';
-import 'package:stacked/stacked.dart';
 
 class LoginScreenViewModel extends BaseModel {
 
@@ -28,35 +27,11 @@ class LoginScreenViewModel extends BaseModel {
           Fluttertoast.showToast(msg: "Login Failed");
         }
       } else {
-        switch (result) {
-          case "ERROR_INVALID_EMAIL":
-            errorMessage = "Your email address appears to be malformed.";
-            break;
-          case "ERROR_WRONG_PASSWORD":
-            errorMessage = "Your password is wrong.";
-            break;
-          case "ERROR_USER_NOT_FOUND":
-            errorMessage = "User with this email doesn't exist.";
-            break;
-          case "ERROR_USER_DISABLED":
-            errorMessage = "User with this email has been disabled.";
-            break;
-          case "ERROR_TOO_MANY_REQUESTS":
-            errorMessage = "Too many requests. Try again later.";
-            break;
-          case "ERROR_OPERATION_NOT_ALLOWED":
-            errorMessage = "Signing in with Email and Password is not enabled.";
-            break;
-          case "ERROR_NETWORK_REQUEST_FAILED":
-            errorMessage = "Please, check your internet connection";
-            break;
-          default:
-            errorMessage = "An undefined Error happened.";
+        errorMessage = result;
         }
         print(result);
         print("The error message is $errorMessage");
         Fluttertoast.showToast(msg: errorMessage, backgroundColor: Colors.blue);
       }
     }
-  }
 }
