@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
+import 'package:sca_ui/config.dart';
 import 'package:sca_ui/models/jobs.dart';
 import 'package:sca_ui/viewmodels/base_model.dart';
 import 'package:stacked/stacked.dart';
@@ -49,9 +50,14 @@ class JobApplicationScreen extends StatelessWidget {
           child: Icon(Icons.add_to_photos),
         ),
         appBar: AppBar(
-          leading: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.deepOrangeAccent[400],
+          leading: InkWell(
+            onTap: (){
+              Navigator.pop(context);
+            },
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.deepOrangeAccent[400],
+            ),
           ),
           elevation: 0,
           backgroundColor: Colors.white,
@@ -60,29 +66,29 @@ class JobApplicationScreen extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(
-                height: 40,
+                height: 8 * SizeConfig.heightMultiplier,
               ),
               Center(
                 child: Container(
-                  height: 150,
-                  width: 150,
+                  height: 18 * SizeConfig.heightMultiplier,
+                  width: 18 * SizeConfig.heightMultiplier,
                   decoration: BoxDecoration(
                       color: Colors.grey.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(20)),
                   child: Icon(
                     Icons.all_inclusive,
                     color: Colors.deepOrangeAccent[400],
-                    size: 50,
+                    size: 6 * SizeConfig.heightMultiplier,
                   ),
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 4 * SizeConfig.heightMultiplier,
               ),
               Text(
                 jobs.jobTitle ?? '',
                 style: TextStyle(
-                  fontSize: 40,
+                  fontSize: 4.8 * SizeConfig.textMultiplier,
                   fontWeight: FontWeight.bold,
                   height: 1.5,
                   fontFamily: 'opensans',
@@ -96,14 +102,14 @@ class JobApplicationScreen extends StatelessWidget {
                 color: Colors.black,
               ),
               SizedBox(
-                height: 50,
+                height: 6 * SizeConfig.heightMultiplier,
               ),
               Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(
-                      left: 20.0,
-                      right: 20,
+                    padding:  EdgeInsets.only(
+                      left: 2.4 * SizeConfig.textMultiplier,
+                      right: 2.4 * SizeConfig.textMultiplier,
                     ),
                     child: Text(
                       'Description:',
@@ -111,7 +117,7 @@ class JobApplicationScreen extends StatelessWidget {
                           color: Colors.black,
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          fontFamily: 'worksans'),
+                          fontFamily: 'worksans',),
                     ),
                   ),
                 ],
@@ -122,9 +128,9 @@ class JobApplicationScreen extends StatelessWidget {
               Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(
-                      left: 20.0,
-                      right: 20,
+                    padding: EdgeInsets.only(
+                      left: 2.4 * SizeConfig.heightMultiplier,
+                      right: 2.4 * SizeConfig.heightMultiplier,
                     ),
                     child: Text(
                       jobs?.jobDescription ?? '',
@@ -142,15 +148,15 @@ class JobApplicationScreen extends StatelessWidget {
               Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(
-                      left: 20.0,
-                      right: 20,
+                    padding: EdgeInsets.only(
+                      left: 2.4 * SizeConfig.heightMultiplier,
+                      right: 2.4 * SizeConfig.heightMultiplier,
                     ),
                     child: Text(
                       'Job Responsibilities',
                       style: TextStyle(
                           color: Colors.black,
-                          fontSize: 20,
+                          fontSize: 2.4 * SizeConfig.textMultiplier,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'worksans'),
                     ),
@@ -158,20 +164,20 @@ class JobApplicationScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 10,
+                height: 1.2 * SizeConfig.heightMultiplier,
               ),
               Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(
-                      left: 20.0,
-                      right: 20,
+                    padding: EdgeInsets.only(
+                      left: 2.4 * SizeConfig.heightMultiplier,
+                      right: 2.4 * SizeConfig.heightMultiplier,
                     ),
                     child: Text(
                       jobs.jobResponsibilities ?? '',
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 14,
+                        fontSize: 2.4 * SizeConfig.textMultiplier,
                         fontFamily: 'worksans',
                       ),
                     ),

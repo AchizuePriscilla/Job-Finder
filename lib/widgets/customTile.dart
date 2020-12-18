@@ -35,7 +35,7 @@ class CustomTile extends StatelessWidget {
               ],
             ),
             child: Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: EdgeInsets.all(1.8 * SizeConfig.heightMultiplier),
               child: Column(
                 children: [
                   Row(
@@ -54,7 +54,7 @@ class CustomTile extends StatelessWidget {
                         onPressed: null,
                         disabledColor: Colors.black87,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(2.4 * SizeConfig.heightMultiplier),
                         ),
                         child: Text(
                           "Full-time",

@@ -76,24 +76,25 @@ class _DescriptionScreenState extends State<DescriptionScreen>
                       SliverList(
                         delegate: SliverChildListDelegate([
                           SizedBox(
-                            height: 20,
+                            height: 1.2 * SizeConfig.heightMultiplier,
                           ),
                           Text(
                             'Discover \nThe Perfect Job',
                             style: TextStyle(
-                                fontSize: 40,
+                                fontSize: 4.8 * SizeConfig.textMultiplier,
                                 fontWeight: FontWeight.bold,
                                 height: 1.5,
                                 fontFamily: 'opensans'),
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 2.4 * SizeConfig.heightMultiplier,
                           ),
                           SizedBox(
-                            height: 40,
+                            height: 4.8 * SizeConfig.heightMultiplier,
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 10.0),
+                            padding: EdgeInsets.only(
+                                left: 1.2 * SizeConfig.heightMultiplier),
                             child: Text(
                               'Jobs for you:',
                               style: TextStyle(
@@ -104,7 +105,7 @@ class _DescriptionScreenState extends State<DescriptionScreen>
                             ),
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 1.2 * SizeConfig.heightMultiplier,
                           ),
                           Container(
                             height: SizeConfig.heightMultiplier * 25,
@@ -126,25 +127,25 @@ class _DescriptionScreenState extends State<DescriptionScreen>
                                                 MaterialPageRoute(
                                                   builder: (_) =>
                                                       JobApplicationScreen(
-                                                        jobs: Jobs(
-                                                          email: jobList[index]
+                                                    jobs: Jobs(
+                                                      email: jobList[index]
                                                           ['email'],
-                                                          jobLocation:
+                                                      jobLocation:
                                                           jobList[index]
-                                                          ['jobLocation'],
-                                                          jobResponsibilities: jobList[
-                                                          index][
+                                                              ['jobLocation'],
+                                                      jobResponsibilities: jobList[
+                                                              index][
                                                           'jobResponsibilities'],
-                                                          jobTitle: jobList[index]
+                                                      jobTitle: jobList[index]
                                                           ['jobTitle'],
-                                                          pay: jobList[index]
+                                                      pay: jobList[index]
                                                           ['pay'],
-                                                          jobDescription: jobList[
-                                                          index][
-                                                          'jobDescription'] ??
-                                                              '',
-                                                        ),
-                                                      ),
+                                                      jobDescription: jobList[
+                                                                  index][
+                                                              'jobDescription'] ??
+                                                          '',
+                                                    ),
+                                                  ),
                                                 ),
                                               );
                                             },
@@ -152,10 +153,10 @@ class _DescriptionScreenState extends State<DescriptionScreen>
                                               isBlack: true,
                                               title: jobList[index]['jobTitle'],
                                               desc: jobList[index]
-                                              ['jobDescription'] ??
+                                                      ['jobDescription'] ??
                                                   '',
                                               location: jobList[index]
-                                              ['jobLocation'],
+                                                  ['jobLocation'],
                                               pay: jobList[index]['pay'],
                                             ),
                                           );
@@ -205,7 +206,7 @@ class _DescriptionScreenState extends State<DescriptionScreen>
                           'Jobs You\'ve applied for:',
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 20,
+                              fontSize: 2.4 * SizeConfig.textMultiplier,
                               fontWeight: FontWeight.w500,
                               fontFamily: 'worksans'),
                         ),
@@ -217,12 +218,11 @@ class _DescriptionScreenState extends State<DescriptionScreen>
                         child: ViewModelBuilder<BaseModel>.reactive(
                           viewModelBuilder: () => BaseModel(),
                           builder: (_, model, __) =>
-                              StreamBuilder<
-                                  QuerySnapshot>(
+                              StreamBuilder<QuerySnapshot>(
                                   stream: FirebaseFirestore.instance
                                       .collection('jobs_applied')
                                       .doc(
-                                      FirebaseAuth.instance.currentUser.uid)
+                                          FirebaseAuth.instance.currentUser.uid)
                                       .collection('list')
                                       .snapshots(),
                                   builder: (context, snapshot) {
@@ -234,7 +234,7 @@ class _DescriptionScreenState extends State<DescriptionScreen>
                                           primary: true,
                                           physics: PageScrollPhysics(),
                                           itemBuilder: (context, index) {
-                                            return CustomCard();
+                                            return CustomCard(jobTitle: jobList[index]['jobTitle'],);
                                           },
                                           itemCount: jobList.length,
                                         );
@@ -252,7 +252,8 @@ class _DescriptionScreenState extends State<DescriptionScreen>
                                     } else if (snapshot.hasError) {
                                       return const Center(
                                         child: Text(
-                                            'Oops! Something went wrong'),
+                                          'Oops! Something went wrong',
+                                        ),
                                       );
                                     } else {
                                       return const Center(

@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sca_ui/routes/route_names.dart';
 import 'package:stacked/stacked.dart';
-import 'package:sca_ui/config.dart';
 import 'package:sca_ui/viewmodels/loginscreen_viewmodel.dart';
-import 'package:sca_ui/widgets/customButton.dart';
-import 'package:sca_ui/constants.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:sca_ui/views/screens/description_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -347,6 +342,7 @@ class _LoginScreenState extends State<LoginScreen>
                       InkWell(
                         onTap: () {
 //                              widget.toggleView();
+                        Navigator.pushNamed(context, RouteNames.registerScreen);
                         },
                         child: RichText(
                           text: TextSpan(children: [

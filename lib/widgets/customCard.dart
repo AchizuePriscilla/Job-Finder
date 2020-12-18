@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import '../config.dart';
 
 class CustomCard extends StatelessWidget {
+  final String jobTitle;
+
+  const CustomCard({Key key, this.jobTitle}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,11 +26,11 @@ class CustomCard extends StatelessWidget {
             ),
           ),
           title: Text(
-            'Google',
+            'Tokopefia',
             style: TextStyle(color: Colors.grey, fontFamily: 'opensans'),
           ),
           subtitle: Text(
-            'Sr Product Designer',
+            jobTitle ?? '',
             style:
             TextStyle(color: Colors.black,
                 fontWeight: FontWeight.w600,
@@ -35,7 +38,7 @@ class CustomCard extends StatelessWidget {
                 fontSize: 12),
           ),
           trailing: Icon(
-            Icons.delete,
+            Icons.title,
             color: Colors.black,
           )),
     );

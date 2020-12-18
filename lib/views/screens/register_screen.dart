@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:sca_ui/models/user.dart';
+import 'package:sca_ui/routes/route_names.dart';
 import 'package:sca_ui/viewmodels/registerscreen_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
@@ -78,7 +79,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                     ),
                     InkWell(
                       onTap: () {
-//                        widget.toggleView();
+                        Navigator.pushNamed(context, RouteNames.registerScreen);
                       },
                       child: RichText(
                         text: TextSpan(children: [
